@@ -1,5 +1,5 @@
 # Project-Backuper
-Ha Documentation 😒 I hate it too, Just make quite simple
+Ha Documentation 😒 I hate it too, Just make quite simple.
 Project contains 3 Files
 1. setup.php - Web Console (Add,Edit,Delete projects,project saving location and additional customisation)
 2. config.json - saves all configuration (Simple DB 😉)
