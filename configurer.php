@@ -120,16 +120,37 @@ function buildEntryViewHTML($configuration){
              <label for=\"comment\">Enable Logging</label>
         </form>
     </div>
-    <div class=\"col-sm-1 mt-3\"></div>
-    <div class=\"col-sm-3 mt-3\">
+    <div class=\"col-sm-3 mt-6\">
         <form action='' method='post'>
            <div class=\"form-group\">
               <label for=\"comment\">Backup path</label>
-              <input type=\"text\" value='".$configuration->backup_path."' class=\"form-control\" name=\"project_path\">
+              <div class=\"input-group\">
+                <input type=\"text\" oninput='validateBackupLocation()' value='".$configuration->backup_path."' class=\"form-control\" id='project_path' name=\"project_path\">
+                <img style='margin-left: 10px;margin-top: 6px' src='info.png' height='18' width='18' alt='' data-toggle=\"tooltip\" title=\"Path sould end with \ or / \"/>
+               </div>
            </div>
-           <button type=\"submit\" name='save_backup_path' class=\"btn btn-success\">Save</button>
+           <button type=\"submit\" id='save_backup_path_btn' name='save_backup_path' class=\"btn btn-success\">Save</button>
         </form>
     </div>
-  </div>";
+  </div>
+  
+    ";
     return $string;
 }
+?>
+
+<script>
+    function validateBackupLocation() {
+        var projectPath = $('#project_path').val();
+        var lastChar = projectPath[projectPath.length -1];
+        if(lastChar == '\\' || lastChar == '/')
+            $("#save_backup_path_btn").prop("disabled","");
+        else
+            $("#save_backup_path_btn").prop("disabled","disabled");
+    }
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    validateBackupLocation();
+</script>
+
